@@ -16,7 +16,7 @@
         "wordpress", "co-developers", "starter theme", "wordpress starter theme", "hooks"
     ],
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
         "timber/timber": "^1.8"
     },
     "autoload": {
