@@ -2,15 +2,17 @@
 
 namespace CoDevelopers\Elastic\Component;
 
-use Timber\Timber;
-use Timber\Term as TimberTerm;
-use Timber\Post as TimberPost;
-
 class Model
 {
-    public function getThePost(string $postClass = TimberPost::class)
+    public function getThePost()
     {
-        return Timber::get_post(false, $postClass);
+        global $post;
+        while (have_posts()) {
+            the_post();
+        }
+        $clonedPost = clone $post;
+        wp_reset_postdata();
+        return $clonedPost;
     }
 
     public function getThePosts(string $postClass = TimberPost::class, bool $returnCollection = false)
