@@ -4,39 +4,76 @@ namespace CoDevelopers\Elastic\Component;
 
 class Model
 {
-    public function getThePost()
+    public function getThePost(): WP_Post
     {
         global $post;
+        $thePost = null;
         while (have_posts()) {
             the_post();
+            $thePost = clone $post;
+            break;
         }
-        $clonedPost = clone $post;
         wp_reset_postdata();
-        return $clonedPost;
+        return $thePost;
     }
 
-    public function getThePosts(string $postClass = TimberPost::class, bool $returnCollection = false)
+    public function getThePosts(): array
     {
-        return Timber::get_posts(false, $postClass, $returnCollection);
+        global $post;
+        $thePosts = [];
+        while (have_posts()) {
+            the_post();
+            $thePosts[] = $post;
+        }
+        wp_reset_postdata();
+        return $thePosts;
     }
 
-    public function getPost(array $query, string $postClass = TimberPost::class)
+    public function getPost(array $args): WP_Post
     {
-        return Timber::get_post($query, $postClass);
+        global $post;
+        $onePost = null;
+        $query = new WP_Query($args);
+        while ($query->have_posts()) {
+            $query->the_post();
+            $onePost = clone $post;
+            break;
+        }
+        wp_reset_postdata();
+        return $onePost;
     }
 
-    public function getPosts(array $query, string $postClass = TimberPost::class, bool $returnCollection = false)
+    public function getPosts(array $args): array
     {
-        return Timber::get_posts($query, $postClass, $returnCollection);
+        global $post;
+        $posts = [];
+        $query = new WP_Query($args);
+        while ($query->have_posts()) {
+            $query->the_post();
+            $posts[] = $post;
+        }
+        wp_reset_postdata();
+        return $posts;
     }
 
-    public function getTerm(int $id, string $taxonomy = 'post_tag', string $termClass = TimberTerm::class)
+    public function getTerm(array $args): WP_Term
     {
-        return Timber::get_term($id, $taxonomy, $termClass);
+        $oneTerm = null;
+        $query = new WP_Term_Query($args);
+        foreach ($query->get_terms() as $term) {
+            $oneTerm = $term;
+            break;
+        }
+        return $oneTerm;
     }
 
-    public function getTerms(array $args, string $termClass = TimberTerm::class)
+    public function getTerms(array $args): array
     {
-        return Timber::get_terms($args, [], $termClass);
+        $terms = [];
+        $query = new WP_Term_Query($args);
+        foreach ($query->get_terms() as $term) {
+            $terms[] = $term;
+        }
+        return $terms;
     }
 }
