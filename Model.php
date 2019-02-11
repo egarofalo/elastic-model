@@ -33,7 +33,7 @@ class Model
     {
         global $post;
         $onePost = null;
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();
             $onePost = clone $post;
@@ -47,7 +47,7 @@ class Model
     {
         global $post;
         $posts = [];
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();
             $posts[] = $post;
