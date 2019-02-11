@@ -4,7 +4,7 @@ namespace CoDevelopers\Elastic\Component;
 
 class Model
 {
-    public function getThePost(): WP_Post
+    public function getThePost(): \WP_Post
     {
         global $post;
         $thePost = null;
@@ -29,7 +29,7 @@ class Model
         return $thePosts;
     }
 
-    public function getPost(array $args): WP_Post
+    public function getPost(array $args): \WP_Post
     {
         global $post;
         $onePost = null;
@@ -56,7 +56,7 @@ class Model
         return $posts;
     }
 
-    public function getTerm(array $args): WP_Term
+    public function getTerm(array $args): \WP_Term
     {
         $oneTerm = null;
         $query = new WP_Term_Query($args);
