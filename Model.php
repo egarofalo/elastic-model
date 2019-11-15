@@ -1,8 +1,8 @@
 <?php
 
-namespace CoDevelopers\Elastic\Component;
+namespace CoDevelopers\WpModel;
 
-class Model
+class WpModel
 {
     public function getThePost(): \WP_Post
     {
