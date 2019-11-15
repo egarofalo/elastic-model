@@ -1,8 +1,8 @@
 {
-    "name": "co-developers/elastic-model",
+    "name": "co-developers/wp-model",
     "type": "library",
     "license": "MIT",
-    "description": "Elastic Model Component",
+    "description": "Model layer for WordPress.",
     "homepage": "http://co-developers.com",
     "authors": [
         {
@@ -13,14 +13,16 @@
         }
     ],
     "keywords": [
-        "wordpress", "co-developers", "starter theme", "wordpress starter theme", "model"
+        "wordpress",
+        "co-developers",
+        "model"
     ],
     "require": {
         "php": "^7.0"
     },
     "autoload": {
         "psr-4": {
-            "CoDevelopers\\Elastic\\Component\\": ""
+            "CoDevelopers\\WpModel\\": ""
         }
     }
 }
