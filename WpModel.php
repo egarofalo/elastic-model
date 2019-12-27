@@ -59,7 +59,7 @@ class WpModel
     public function getTerm(array $args): \WP_Term
     {
         $oneTerm = null;
-        $query = new WP_Term_Query($args);
+        $query = new \WP_Term_Query($args);
         foreach ($query->get_terms() as $term) {
             $oneTerm = $term;
             break;
@@ -70,7 +70,7 @@ class WpModel
     public function getTerms(array $args): array
     {
         $terms = [];
-        $query = new WP_Term_Query($args);
+        $query = new \WP_Term_Query($args);
         foreach ($query->get_terms() as $term) {
             $terms[] = $term;
         }
